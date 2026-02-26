@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Le Bleu du Lac — The Lake Ride</title>
+  <meta name="description" content="Site fictif pour promouvoir l’événement The Lake Ride au Pâquier (Annecy) — voile, paddle, catamaran." />
+
+  <style>
+    :root{
+      --bg:#07162a;
+      --card:#0b2240;
+      --card2:#0c2c52;
+      --text:#e8f2ff;
+      --muted:#b8d4ff;
+      --brand:#2fd3ff;
+      --brand2:#22c55e;
+      --accent:#ffb020;
+      --danger:#ff5a6a;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 20px;
+      --radius2: 26px;
+      --max: 1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 20% 10%, rgba(47,211,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 90% 25%, rgba(255,176,32,.16), transparent 55%),
+        radial-gradient(800px 500px at 40% 90%, rgba(34,197,94,.12), transparent 55%),
+        linear-gradient(180deg, #061326 0%, #061326 20%, #041126 100%);
+      line-height:1.5;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Header */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(6,19,38,.62);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width: 220px;
+      text-decoration:none;
+    }
+    .logo{
+      width:42px; height:42px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.35), transparent 40%),
+        linear-gradient(135deg, rgba(47,211,255,.9), rgba(34,197,94,.85));
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+      display:grid; place-items:center;
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      width:18px; height:18px;
+      border-radius: 10px;
+      border:2px solid rgba(255,255,255,.9);
+      border-left-color:transparent;
+      transform: rotate(18deg);
+      opacity:.9;
+    }
+    .brand strong{display:block; font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted); margin-top:1px}
+
+    .menu{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .menu a{
+      text-decoration:none;
+      font-size:13px;
+      padding:8px 10px;
+      border-radius: 12px;
+      color: rgba(232,242,255,.9);
+      border:1px solid transparent;
+      transition: .2s ease;
+    }
+    .menu a:hover{background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.10)}
+    .menu a.active{background: rgba(47,211,255,.14); border-color: rgba(47,211,255,.35)}
+
+    .cta{
+      display:flex; align-items:center; gap:10px;
+    }
+    .btn{
+      appearance:none; border:0;
+      padding:10px 14px;
+      border-radius: 14px;
+      font-weight:650;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s ease;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      white-space:nowrap;
+    }
+    .btn.primary{background: linear-gradient(135deg, rgba(47,211,255,.95), rgba(34,197,94,.9)); color:#05203a;}
+    .btn.primary:hover{transform: translateY(-1px); filter: saturate(1.06)}
+    .btn.ghost{background: rgba(255,255,255,.06); color:var(--text); border:1px solid rgba(255,255,255,.10)}
+    .btn.ghost:hover{background: rgba(255,255,255,.09)}
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(232,242,255,.9);
+      font-size:12px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+
+    /* Hero */
+    .hero{padding:28px 0 10px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(11,34,64,.85), rgba(11,34,64,.65));
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+    }
+    .heroMain{padding:22px}
+    .kicker{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    h1{margin:10px 0 8px; font-size:40px; line-height:1.05; letter-spacing:-.5px}
+    .sub{color: var(--muted); max-width: 58ch; font-size:15px}
+
+    .highlights{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .mini{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding:12px;
+      display:flex; gap:10px;
+    }
+    .ico{
+      width:34px;height:34px;border-radius:14px;
+      background: rgba(47,211,255,.14);
+      border: 1px solid rgba(47,211,255,.28);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+    }
+    .mini b{display:block; font-size:13px}
+    .mini span{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+
+    .heroSide{padding:18px}
+    .sideTop{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+    .count{
+      margin-top:12px;
+      display:grid; grid-template-columns: repeat(4,1fr);
+      gap:10px;
+    }
+    .count .box{
+      padding:10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      text-align:center;
+    }
+    .count .n{font-size:20px; font-weight:800}
+    .count .l{font-size:11px; color:var(--muted)}
+
+    .quick{
+      margin-top:14px;
+      border-top: 1px dashed rgba(255,255,255,.18);
+      padding-top:14px;
+      display:grid;
+      gap:10px;
+    }
+    .qrow{display:flex; justify-content:space-between; gap:12px; font-size:13px}
+    .qrow span{color:var(--muted)}
+
+    /* Sections */
+    section{padding:22px 0}
+    .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:12px}
+    .sectionHead h2{margin:0; font-size:22px; letter-spacing:-.2px}
+    .sectionHead p{margin:0; color:var(--muted); font-size:13px; max-width:64ch}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:14px}
+
+    .panel{padding:16px}
+    .panel h3{margin:0 0 6px; font-size:15px}
+    .panel p{margin:0; color:var(--muted); font-size:13px}
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; padding:6px 10px; border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(232,242,255,.92);
+    }
+
+    /* Tabs */
+    .tabs{display:flex; gap:10px; flex-wrap:wrap}
+    .tab{cursor:pointer; user-select:none}
+    .tab[aria-selected="true"]{background: rgba(47,211,255,.14); border-color: rgba(47,211,255,.35)}
+    .tabContent{margin-top:12px}
+
+    .list{display:grid; gap:10px}
+    .li{
+      padding:12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      display:flex; align-items:flex-start; gap:10px;
+    }
+    .li b{display:block; font-size:13px}
+    .li span{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+
+    /* Offers */
+    .pricing{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .priceCard{padding:16px; position:relative}
+    .priceCard.featured{
+      border-color: rgba(255,176,32,.40);
+      background: linear-gradient(180deg, rgba(12,44,82,.88), rgba(11,34,64,.70));
+    }
+    .ribbon{
+      position:absolute; top:14px; right:14px;
+      background: rgba(255,176,32,.16);
+      border:1px solid rgba(255,176,32,.40);
+      color: rgba(255,240,210,.95);
+      padding:6px 10px;
+      border-radius: 999px;
+      font-size:11px;
+      font-weight:700;
+    }
+    .pTop{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+    .pName{font-weight:850}
+    .pPrice{font-size:24px; font-weight:900; letter-spacing:-.4px}
+    .pPrice small{font-size:12px; color:var(--muted); font-weight:700}
+    .pDesc{margin:8px 0 12px; color:var(--muted); font-size:13px}
+    .pFeat{display:grid; gap:8px; margin:0 0 12px; padding:0; list-style:none}
+    .pFeat li{display:flex; gap:8px; align-items:flex-start; color: rgba(232,242,255,.92); font-size:13px}
+    .check{width:18px;height:18px;border-radius:6px;background: rgba(34,197,94,.18); border:1px solid rgba(34,197,94,.35); display:inline-grid; place-items:center; flex:0 0 auto}
+
+    /* Form */
+    form{display:grid; gap:12px}
+    .formRow{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    label{font-size:12px; color: rgba(232,242,255,.92)}
+    input, select, textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    .help{color:var(--muted); font-size:12px}
+
+    .toast{
+      position:fixed;
+      right:16px; bottom:16px;
+      background: rgba(8,24,46,.92);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      padding:12px 14px;
+      box-shadow: var(--shadow);
+      max-width: 360px;
+      display:none;
+      z-index:80;
+    }
+    .toast.show{display:block; animation: pop .18s ease}
+    @keyframes pop{from{transform:translateY(6px); opacity:0} to{transform:translateY(0); opacity:1}}
+
+    /* Footer */
+    footer{padding:24px 0 34px; color: var(--muted); font-size:12px}
+    .footGrid{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns: 1fr}
+      .grid3{grid-template-columns: 1fr}
+      .grid2{grid-template-columns: 1fr}
+      .pricing{grid-template-columns: 1fr}
+      .formRow{grid-template-columns: 1fr}
+      h1{font-size:34px}
+      .brand{min-width: unset}
+    }
+
+    /* Print friendly */
+    @media print{
+      .topbar, .btn, .toast{display:none !important}
+      body{background:#fff; color:#000}
+      .card{box-shadow:none; background:#fff; border:1px solid #ddd}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#accueil" aria-label="Retour à l’accueil">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <strong>Le Bleu du Lac</strong>
+            <span>The Lake Ride — Annecy • Le Pâquier</span>
+          </div>
+        </a>
+
+        <nav class="menu" aria-label="Navigation principale">
+          <a href="#accueil" data-nav>Accueil</a>
+          <a href="#evenement" data-nav>Événement</a>
+          <a href="#parcours" data-nav>Parcours</a>
+          <a href="#packs" data-nav>Packs</a>
+          <a href="#inscription" data-nav>Inscription</a>
+          <a href="#contact" data-nav>Contact</a>
+        </nav>
+
+        <div class="cta">
+          <span class="pill" title="Entrée gratuite">
+            <span class="dot" aria-hidden="true"></span>
+            Entrée gratuite • Buvette 2,50€
+          </span>
+          <a class="btn primary" href="#inscription">Je m’inscris</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ACCUEIL -->
+    <section id="accueil" class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="card heroMain">
+            <div class="kicker">
+              <span class="badge">19–20 juin</span>
+              <span class="badge">11h–19h • 21h–23h</span>
+              <span class="badge">Base nautique : Le Pâquier</span>
+            </div>
+            <h1>The Lake Ride<br/>au Lac d’Annecy</h1>
+            <p class="sub">
+              Un événement nautique (fictif) pour découvrir le club <b>Le Bleu du Lac</b> : initiation, défis ludiques et ambiance conviviale.
+              <br/>
+              Activités : <b>paddle</b>, <b>voile</b>, <b>catamaran</b>.
+            </p>
+
+            <div class="highlights">
+              <div class="mini">
+                <div class="ico" aria-hidden="true">⛵</div>
+                <div>
+                  <b>Voile & catamaran</b>
+                  <span>Découverte + mini-défis adaptés à tous les niveaux.</span>
+                </div>
+              </div>
+              <div class="mini">
+                <div class="ico" aria-hidden="true">🏄</div>
+                <div>
+                  <b>Paddle & glisse</b>
+                  <span>Parcours courts, fun, sécurisés et encadrés.</span>
+                </div>
+              </div>
+              <div class="mini">
+                <div class="ico" aria-hidden="true">🛟</div>
+                <div>
+                  <b>Sécurité & encadrement</b>
+                  <span>Moniteurs, animateurs, zones balisées (selon public).</span>
+                </div>
+              </div>
+              <div class="mini">
+                <div class="ico" aria-hidden="true">🎉</div>
+                <div>
+                  <b>Ambiance festive</b>
+                  <span>Buvette, animations, rencontres et souvenirs.</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn ghost" href="#evenement">Voir le programme</a>
+              <button class="btn ghost" id="copyPhone" type="button">Copier le téléphone</button>
+              <a class="btn ghost" href="#parcours">Choisir mon parcours</a>
+            </div>
+          </div>
+
+          <aside class="card heroSide" aria-label="Infos pratiques">
+            <div class="sideTop">
+              <div>
+                <div class="badge">Compte à rebours</div>
+                <div style="margin-top:6px; font-weight:850">Début : 19 juin • 11h</div>
+                <div class="help">(modifiable dans le code : <code>EVENT_START</code>)</div>
+              </div>
+              <div class="badge" title="Objectif de fréquentation">
+                ~2000 visiteurs
+              </div>
+            </div>
+
+            <div class="count" id="countdown" aria-live="polite">
+              <div class="box"><div class="n" data-k="d">–</div><div class="l">jours</div></div>
+              <div class="box"><div class="n" data-k="h">–</div><div class="l">heures</div></div>
+              <div class="box"><div class="n" data-k="m">–</div><div class="l">min</div></div>
+              <div class="box"><div class="n" data-k="s">–</div><div class="l">sec</div></div>
+            </div>
+
+            <div class="quick">
+              <div class="qrow"><span>Lieu</span><b>Annecy — Le Pâquier</b></div>
+              <div class="qrow"><span>Entrée</span><b>Gratuite</b></div>
+              <div class="qrow"><span>Inscription</span><b>Sur place + en ligne</b></div>
+              <div class="qrow"><span>Contact</span><b>06 16 32 44 95</b></div>
+            </div>
+
+            <div style="margin-top:14px; display:grid; gap:10px">
+              <a class="btn primary" href="#inscription">Réserver ma place</a>
+              <a class="btn ghost" href="#packs">Découvrir les packs</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENEMENT -->
+    <section id="evenement">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Événement</h2>
+            <p>Dates, horaires, activités et infos clés — pensé pour être crédible comme un vrai site de promo.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card panel">
+            <h3>Quand ?</h3>
+            <p>
+              <b>19–20 juin</b> • <b>11h–19h</b> (journée) • <b>21h–23h</b> (soir)
+              <br/>
+              Entrée <b>gratuite</b> — buvette <b>2,50€</b>.
+            </p>
+
+            <div style="margin-top:12px" class="tabs" role="tablist" aria-label="Horaires">
+              <span class="badge tab" role="tab" tabindex="0" aria-selected="true" data-tab="j1">Jour 1 — 19 juin</span>
+              <span class="badge tab" role="tab" tabindex="0" aria-selected="false" data-tab="j2">Jour 2 — 20 juin</span>
+            </div>
+
+            <div class="tabContent" id="tab-j1" role="tabpanel">
+              <div class="list">
+                <div class="li"><div class="ico" aria-hidden="true">🧭</div><div><b>11h–12h</b><span>Accueil, briefing sécurité, orientation des parcours</span></div></div>
+                <div class="li"><div class="ico" aria-hidden="true">🏄</div><div><b>12h–19h</b><span>Initiations (paddle / voile / catamaran) + défis ludiques</span></div></div>
+                <div class="li"><div class="ico" aria-hidden="true">🎶</div><div><b>21h–23h</b><span>Soirée conviviale : animations, buvette, remise de lots (fictif)</span></div></div>
+              </div>
+            </div>
+
+            <div class="tabContent" id="tab-j2" role="tabpanel" hidden>
+              <div class="list">
+                <div class="li"><div class="ico" aria-hidden="true">🛟</div><div><b>11h–12h</b><span>Ré-accueil + créneaux “découverte” familles</span></div></div>
+                <div class="li"><div class="ico" aria-hidden="true">⛵</div><div><b>12h–19h</b><span>Parcours encadrés par âge + sessions “perfectionnement”</span></div></div>
+                <div class="li"><div class="ico" aria-hidden="true">📸</div><div><b>21h–23h</b><span>Moments souvenirs : photos, réseaux, bilan à chaud (fictif)</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <h3>Où ?</h3>
+            <p>
+              <b>Base nautique — Le Pâquier (Annecy)</b>.
+              <br/>
+              Départ des parcours depuis la base, zones d’activités balisées.
+            </p>
+
+            <div style="margin-top:12px" class="list">
+              <div class="li"><div class="ico" aria-hidden="true">✅</div><div><b>Public</b><span>11–15 ans • 15–20 ans • 20 ans et + (familles bienvenues)</span></div></div>
+              <div class="li"><div class="ico" aria-hidden="true">🧩</div><div><b>Objectifs</b><span>Découvrir • s’amuser • gagner en confiance • partager</span></div></div>
+              <div class="li"><div class="ico" aria-hidden="true">🌿</div><div><b>Engagement</b><span>Matériaux et communication responsables (fictif / projet universitaire)</span></div></div>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn ghost" href="#contact">Voir les réseaux</a>
+              <a class="btn ghost" href="#inscription">S’inscrire en ligne</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section id="parcours">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Parcours & niveaux</h2>
+            <p>
+              Trois parcours <b>différents</b> au départ du Pâquier — pensés pour être réalistes (distance, sécurité, fatigue).
+              Tu peux modifier les textes facilement dans la variable <code>ROUTES</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3" id="routeCards"></div>
+
+        <div class="card panel" style="margin-top:14px">
+          <h3>Carte (à remplacer si tu veux)</h3>
+          <p class="help">
+            Tu peux intégrer ici ta carte/visuel. Pour le moment, on affiche une image "placeholder".
+            <br/>Astuce : remplace le lien de l’image dans le code (<code>MAP_IMAGE</code>).
+          </p>
+          <div style="margin-top:10px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.12)">
+            <img id="mapImg" alt="Carte du lac d’Annecy" style="width:100%; display:block; max-height:420px; object-fit:cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKS -->
+    <section id="packs">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Packs & offres (fictifs)</h2>
+            <p>
+              Pour un vrai site, il faut des offres simples. Ici c’est fictif : l’entrée est gratuite, mais tu peux proposer des “packs”
+              pour structurer l’expérience (réservation, créneaux, goodies, boisson, etc.).
+            </p>
+          </div>
+        </div>
+
+        <div class="pricing">
+          <div class="card priceCard">
+            <div class="pTop">
+              <div>
+                <div class="pName">Pack Découverte</div>
+                <div class="pDesc">Idéal pour tester 1 activité + briefing sécurité.</div>
+              </div>
+              <div class="pPrice">0€ <small>/ entrée</small></div>
+            </div>
+            <ul class="pFeat">
+              <li><span class="check">✓</span> Accès libre à l’événement</li>
+              <li><span class="check">✓</span> 1 créneau initiation (selon dispo)</li>
+              <li><span class="check">✓</span> Conseils équipement & sécurité</li>
+            </ul>
+            <a class="btn ghost" href="#inscription" style="width:100%; justify-content:center">Je choisis</a>
+          </div>
+
+          <div class="card priceCard featured">
+            <div class="ribbon">Le plus demandé</div>
+            <div class="pTop">
+              <div>
+                <div class="pName">Pack Glisse</div>
+                <div class="pDesc">2 activités + mini-défi + boisson à la buvette.</div>
+              </div>
+              <div class="pPrice">2,50€ <small>/ boisson</small></div>
+            </div>
+            <ul class="pFeat">
+              <li><span class="check">✓</span> 2 créneaux (paddle + voile/cata)</li>
+              <li><span class="check">✓</span> 1 boisson à la buvette</li>
+              <li><span class="check">✓</span> Accès à un mini-défi encadré</li>
+            </ul>
+            <a class="btn primary" href="#inscription" style="width:100%; justify-content:center">Réserver ce pack</a>
+          </div>
+
+          <div class="card priceCard">
+            <div class="pTop">
+              <div>
+                <div class="pName">Pack Famille</div>
+                <div class="pDesc">Créneaux adaptés + zone détente + accompagnement.</div>
+              </div>
+              <div class="pPrice">0€ <small>/ entrée</small></div>
+            </div>
+            <ul class="pFeat">
+              <li><span class="check">✓</span> Créneaux “famille” (sans pression)</li>
+              <li><span class="check">✓</span> Conseils pour enfants (11–15)</li>
+              <li><span class="check">✓</span> Accès facile & accueil dédié</li>
+            </ul>
+            <a class="btn ghost" href="#inscription" style="width:100%; justify-content:center">Je choisis</a>
+          </div>
+        </div>
+
+        <div class="card panel" style="margin-top:14px">
+          <h3>FAQ rapide</h3>
+          <div class="list" style="margin-top:10px">
+            <div class="li"><div class="ico" aria-hidden="true">❓</div><div><b>Faut-il être sportif ?</b><span>Non. Les activités sont adaptées à tous les niveaux, avec encadrement.</span></div></div>
+            <div class="li"><div class="ico" aria-hidden="true">🧒</div><div><b>Et si j’ai 11–15 ans ?</b><span>Parcours plus court, plus proche du Pâquier, et animateurs dédiés.</span></div></div>
+            <div class="li"><div class="ico" aria-hidden="true">🧾</div><div><b>Entrée gratuite, mais pourquoi des packs ?</b><span>C’est un site fictif : les packs aident à structurer la réservation et l’expérience.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSCRIPTION -->
+    <section id="inscription">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Inscription</h2>
+            <p>Inscription fictive : le formulaire enregistre localement (dans ton navigateur) pour simuler une vraie réservation.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card panel">
+            <h3>Réserver en ligne</h3>
+            <form id="signup">
+              <div class="formRow">
+                <div>
+                  <label for="name">Nom / Prénom</label>
+                  <input id="name" name="name" placeholder="Ex : Alex Martin" required />
+                </div>
+                <div>
+                  <label for="age">Tranche d’âge</label>
+                  <select id="age" name="age" required>
+                    <option value="">Choisir…</option>
+                    <option>11–15 ans</option>
+                    <option>15–20 ans</option>
+                    <option>20 ans et +</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <div>
+                  <label for="day">Jour</label>
+                  <select id="day" name="day" required>
+                    <option value="">Choisir…</option>
+                    <option>Jour 1 — 19 juin</option>
+                    <option>Jour 2 — 20 juin</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="sport">Activité</label>
+                  <select id="sport" name="sport" required>
+                    <option value="">Choisir…</option>
+                    <option>Paddle</option>
+                    <option>Voile</option>
+                    <option>Catamaran</option>
+                    <option>Je veux tester plusieurs activités</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="pack">Pack (optionnel)</label>
+                <select id="pack" name="pack">
+                  <option value="">Aucun</option>
+                  <option>Pack Découverte (0€)</option>
+                  <option>Pack Glisse (2,50€)</option>
+                  <option>Pack Famille (0€)</option>
+                </select>
+                <div class="help">Tu peux renommer/ajouter des packs dans la section “Packs & offres”.</div>
+              </div>
+
+              <div>
+                <label for="note">Commentaire (optionnel)</label>
+                <textarea id="note" name="note" placeholder="Ex : je viens avec 2 amis / je préfère un créneau débutant…"></textarea>
+              </div>
+
+              <button class="btn primary" type="submit" style="justify-content:center">Valider mon inscription</button>
+              <div class="help">Aucune donnée n’est envoyée : tout reste local (site fictif).</div>
+            </form>
+          </div>
+
+          <div class="card panel">
+            <h3>Inscription sur place</h3>
+            <p>
+              Tu peux aussi t’inscrire <b>sur place</b> à la base nautique.
+              Pour fluidifier, on conseille quand même de réserver en ligne (même fictif) pour estimer la fréquentation.
+            </p>
+
+            <div class="list" style="margin-top:10px">
+              <div class="li"><div class="ico" aria-hidden="true">🧾</div><div><b>Accueil & renseignements</b><span>Stand d’accueil au Pâquier — informations, orientation, créneaux.</span></div></div>
+              <div class="li"><div class="ico" aria-hidden="true">🛟</div><div><b>Équipement</b><span>Gilets, consignes sécurité, matériel adapté à l’âge et au niveau.</span></div></div>
+              <div class="li"><div class="ico" aria-hidden="true">🧑‍🏫</div><div><b>Encadrement</b><span>Moniteurs, animateurs, zones balisées (fictif / projet universitaire).</span></div></div>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn ghost" href="tel:+33616324495">Appeler : 06 16 32 44 95</a>
+              <a class="btn ghost" href="#parcours">Voir les parcours</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Contact & réseaux</h2>
+            <p>Tu n’as pas d’email : on met en avant le téléphone + liens réseaux (fictifs) + YouTube.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card panel">
+            <h3>Téléphone</h3>
+            <p><b>06 16 32 44 95</b><br/><span class="help">Disponible pour infos & inscriptions.</span></p>
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn primary" href="tel:+33616324495">Appeler</a>
+              <button class="btn ghost" type="button" id="copyPhone2">Copier</button>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <h3>Réseaux</h3>
+            <p class="help">Liens fictifs (tu peux remplacer par les vrais si tu en as).</p>
+            <div style="margin-top:10px; display:grid; gap:10px">
+              <a class="btn ghost" href="#" onclick="toast('Lien Instagram (fictif)')">Instagram</a>
+              <a class="btn ghost" href="#" onclick="toast('Lien TikTok (fictif)')">TikTok</a>
+              <a class="btn ghost" href="#" onclick="toast('Lien Facebook (fictif)')">Facebook</a>
+              <a class="btn ghost" href="#" onclick="toast('Lien YouTube (fictif)')">YouTube</a>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <h3>Infos club</h3>
+            <p>
+              <b>Le Bleu du Lac</b><br/>
+              Annecy — Base nautique du Pâquier
+              <br/>
+              <span class="help">Site fictif — projet universitaire.</span>
+            </p>
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn ghost" href="#evenement">Voir l’événement</a>
+              <a class="btn ghost" href="#packs">Packs</a>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <div class="wrap">
+            <div class="footGrid">
+              <div>© <span id="year"></span> — Le Bleu du Lac (fictif) • The Lake Ride</div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap">
+                <span class="pill"><span class="dot" aria-hidden="true"></span>Modifiable facilement</span>
+                <span class="pill" title="Ouvre le fichier localement">1 fichier HTML</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /********************
+     *  À MODIFIER ICI  *
+     ********************/
+    // 1) Date/heure de début (compte à rebours)
+    //    Format : new Date('YYYY-MM-DDTHH:MM:SS')
+    const EVENT_START = new Date('2026-06-19T11:00:00');
+
+    // 2) Image de carte (remplace par ta carte si tu veux)
+    //    Astuce : mets un fichier image dans le même dossier et change le nom ici.
+    const MAP_IMAGE = 'map-placeholder.jpg';
+
+    // 3) Parcours par tranche d’âge (texte + “direction” pour varier)
+    const ROUTES = [
+      {
+        title: '11–15 ans — Parcours Découverte (court)',
+        badge: 'Sécurisé • proche base',
+        color: 'var(--brand2)',
+        points: [
+          'Départ/retour : Base nautique Le Pâquier',
+          'Boucle courte le long de la rive proche d’Annecy (zones calmes)',
+          'Pause encadrée + mini-défi “équilibre” (paddle)',
+          'Objectif : fun + confiance, sans fatigue excessive'
+        ],
+        note: 'Recommandé : paddle ou voile légère. Encadrement renforcé.'
+      },
+      {
+        title: '15–20 ans — Parcours Social & Challenge (moyen)',
+        badge: 'Ambiance • sensations',
+        color: 'var(--brand)',
+        points: [
+          'Départ : Le Pâquier → cap sur une zone “spot” (rive opposée)',
+          'Trajet intermédiaire + défi chronométré (optionnel)',
+          'Retour par une autre trajectoire (varier les paysages)',
+          'Objectif : souvenirs, partage, photos & réseaux'
+        ],
+        note: 'Recommandé : paddle + catamaran. Activités accessibles à tous niveaux.'
+      },
+      {
+        title: '20 ans et + — Parcours Nature & Détente (souple)',
+        badge: 'Flexible • famille',
+        color: 'var(--accent)',
+        points: [
+          'Départ : Le Pâquier → itinéraire “nature” le long d’une rive',
+          'Option “pause détente” (zone calme) + découverte du lac',
+          'Retour libre à horaire flexible (créneau conseillé)',
+          'Objectif : détente, découverte, activités sans pression'
+        ],
+        note: 'Recommandé : voile / catamaran en mode balade, ou paddle tranquille.'
+      }
+    ];
+
+    /********************
+     *   LOGIQUE SITE   *
+     ********************/
+
+    // Année footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Map placeholder
+    const mapImg = document.getElementById('mapImg');
+    mapImg.src = MAP_IMAGE;
+    mapImg.onerror = () => {
+      // Si l'image n'existe pas, on affiche un “fallback” simple.
+      mapImg.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#2fd3ff" stop-opacity=".25"/>
+              <stop offset="1" stop-color="#22c55e" stop-opacity=".20"/>
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="#07162a"/>
+          <rect x="36" y="36" width="1128" height="488" rx="28" fill="url(#g)" stroke="rgba(255,255,255,.18)"/>
+          <text x="70" y="120" fill="rgba(232,242,255,.95)" font-family="Arial" font-size="34" font-weight="700">Ajoute ta carte ici</text>
+          <text x="70" y="165" fill="rgba(184,212,255,.9)" font-family="Arial" font-size="18">Place une image dans le même dossier (ex: map.jpg) puis change MAP_IMAGE dans le code.</text>
+        </svg>
+      `);
+    };
+
+    // Render parcours cards
+    const routeCards = document.getElementById('routeCards');
+    routeCards.innerHTML = ROUTES.map((r, idx) => `
+      <article class="card panel" style="border-color: rgba(255,255,255,.12)">
+        <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start">
+          <div>
+            <h3 style="margin-bottom:6px">${r.title}</h3>
+            <span class="badge" style="border-color: rgba(255,255,255,.14)">${r.badge}</span>
+          </div>
+          <span class="badge" style="background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12)">
+            <span class="dot" style="background:${r.color}" aria-hidden="true"></span>
+            Parcours ${idx+1}
+          </span>
+        </div>
+        <ul class="pFeat" style="margin-top:12px">
+          ${r.points.map(p => `<li><span class="check">✓</span>${p}</li>`).join('')}
+        </ul>
+        <p class="help">${r.note}</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+          <button class="btn ghost" type="button" onclick="toast('Parcours sélectionné : ${escapeHtml(r.title)}')">Sélectionner</button>
+          <a class="btn ghost" href="#inscription">S’inscrire</a>
+        </div>
+      </article>
+    `).join('');
+
+    // Tabs
+    const tabs = document.querySelectorAll('.tab');
+    const tabJ1 = document.getElementById('tab-j1');
+    const tabJ2 = document.getElementById('tab-j2');
+
+    function setTab(which){
+      tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === which)));
+      tabJ1.hidden = which !== 'j1';
+      tabJ2.hidden = which !== 'j2';
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => setTab(t.dataset.tab));
+      t.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setTab(t.dataset.tab); }
+      });
+    });
+
+    // Countdown
+    const countdownEl = document.getElementById('countdown');
+    const slots = {
+      d: countdownEl.querySelector('[data-k="d"]'),
+      h: countdownEl.querySelector('[data-k="h"]'),
+      m: countdownEl.querySelector('[data-k="m"]'),
+      s: countdownEl.querySelector('[data-k="s"]'),
+    };
+
+    function tick(){
+      const now = new Date();
+      const diff = EVENT_START - now;
+
+      if(diff <= 0){
+        slots.d.textContent = '0';
+        slots.h.textContent = '0';
+        slots.m.textContent = '0';
+        slots.s.textContent = '0';
+        return;
+      }
+
+      const totalSec = Math.floor(diff / 1000);
+      const d = Math.floor(totalSec / (3600*24));
+      const h = Math.floor((totalSec % (3600*24)) / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+
+      slots.d.textContent = d;
+      slots.h.textContent = h;
+      slots.m.textContent = m;
+      slots.s.textContent = s;
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // Toast
+    const toastEl = document.getElementById('toast');
+    let toastTimer;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+    }
+    window.toast = toast;
+
+    // Copy phone
+    const PHONE = '06 16 32 44 95';
+    async function copyPhone(){
+      try{
+        await navigator.clipboard.writeText(PHONE);
+        toast('Téléphone copié ✅');
+      } catch {
+        toast('Copie impossible (navigateur)');
+      }
+    }
+    document.getElementById('copyPhone')?.addEventListener('click', copyPhone);
+    document.getElementById('copyPhone2')?.addEventListener('click', copyPhone);
+
+    // Signup form (localStorage)
+    const form = document.getElementById('signup');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const key = 'bleudulac_signup';
+      const existing = JSON.parse(localStorage.getItem(key) || '[]');
+      existing.push({ ...data, ts: new Date().toISOString() });
+      localStorage.setItem(key, JSON.stringify(existing));
+      form.reset();
+      toast('Inscription enregistrée (fictif) ✅');
+    });
+
+    // Active nav (scroll)
+    const navLinks = [...document.querySelectorAll('[data-nav]')];
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = navLinks.find(a => a.getAttribute('href') === '#' + entry.target.id);
+          if(active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0.01 });
+
+    sections.forEach(s => obs.observe(s));
+
+    // Helpers
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#039;');
+    }
+  </script>
+</body>
+</html>
